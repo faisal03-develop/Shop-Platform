@@ -1,9 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const connectDB = require('./config/db');
-const Product = require('./models/product.model');
-
-
+const getproducts = require('./routes/products.route');
 dotenv.config();
 connectDB();
 
@@ -11,29 +10,18 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Middleware
 app.use(express.json());
 
-// Routes
+
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
+app.use('', getproducts)
 
-app.get('/products', async (req,res) => {
-    const products = await Product.find({});
-    console.log(products);
-    // res.json(products);
-})
-
-app.post('/createproduct', async (req, res) => {
-    const product = req.body;
-    const resposd = await Product.create(product);
-    res.status(201).json(resposd);
-})
-
-// Server
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
