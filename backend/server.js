@@ -1,9 +1,11 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-connectDB();
+const Product = require('./models/product.model');
 
 dotenv.config();
+connectDB();
+
 
 
 const app = express();
@@ -15,6 +17,14 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
+
+app.get('/products', async (req,res) => {
+    const products = await Product.find({});
+    console.log(products);
+    // res.json(products);
+
+})
 
 // Server
 const PORT = process.env.PORT || 5000;
