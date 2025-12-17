@@ -2,7 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const getproducts = require('./routes/products.route');
+// const Product = require('./models/product.model');
+const getproducts = require('./routes/fetchProducts.route');
+const products = require('./routes/products.route');
 dotenv.config();
 connectDB();
 
@@ -20,6 +22,8 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
+
+app.use('', products)
 app.use('', getproducts)
 
 const PORT = process.env.PORT;
