@@ -4,6 +4,8 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 // const Product = require('./models/product.model');
 // const Order = require('./models/order.model');
+// const User = require('./models/user.model');
+const signup = require('./routes/signup.route');
 const buy = require('./routes/buy.route');
 const getproducts = require('./routes/fetchProducts.route');
 const products = require('./routes/products.route');
@@ -25,9 +27,12 @@ app.get('/', (req, res) => {
 });
 
 
+
+
 app.use('', products)
 app.use('', getproducts)
 app.use('', buy)
+app.use('', signup)
 
 
 
