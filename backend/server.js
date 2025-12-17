@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 // const Order = require('./models/order.model');
 // const User = require('./models/user.model');
 const signup = require('./routes/signup.route');
+const login = require('./routes/login.route');
 const buy = require('./routes/buy.route');
 const getproducts = require('./routes/fetchProducts.route');
 const products = require('./routes/products.route');
@@ -33,6 +34,7 @@ app.use('', products)
 app.use('', getproducts)
 app.use('', buy)
 app.use('', signup)
+app.use('', login)
 
 
 
